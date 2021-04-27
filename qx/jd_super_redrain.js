@@ -29,13 +29,13 @@ const JD_API_HOST = 'https://api.m.jd.com/api';
         return;
     }
     let url = rraUrl()
-    that.log(`召唤龙王: ${url}`)
+    that.log(`等待更新RRA文件: ${url}`)
     let code = await redRainId(url)
     code = await retryCdn(code, url)
-    that.log(`召唤完成`)
+    that.log(`找到RRA文件`)
 
     if(!code){
-        $.log(`今日龙王??出差，天气晴朗??，改日再来～\n`)
+        $.log(`RRA文件暂未更新，请稍后再试～\n`)
         return
     }
 
@@ -212,7 +212,7 @@ async function retryCdn(code, url) {
         let items = url.split("/")
         let fn = items[items.length-1]
         let cndUrl = `http://jd-1255594201.file.myqcloud.com/${fn}`
-        $.log(`召唤龙王失败, 召唤神龙: ${cndUrl}`)
+        $.log(`RRA文件更新失败, 尝试使用CND文件: ${cndUrl}`)
         code = await redRainId(cndUrl)
     }
 
