@@ -29,7 +29,7 @@ const JD_API_HOST = 'https://api.m.jd.com/api';
         return;
     }
     let url = rraUrl()
-    that.log(`等待更新RRA文件: ${url}`)
+   // that.log(`等待更新RRA文件: ${url}`)
     let code = await redRainId(url)
     code = await retryCdn(code, url)
     that.log(`找到RRA文件`)
